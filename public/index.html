@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>React.js Example</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/normalize-8.0.0.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <h1>Visualize State with JSON</h1>
+        <div class="section-wrapper">
+            <section id="leftSection">
+                <h2>UI</h2>
+                <form id="theForm">
+                    <div class="input-row">
+                        <label>Name</label>
+                        <input type="text" id="nameInput" name="name" value="" />
+                    </div>
+                    <div class="input-row">
+                        <label>Email</label>
+                        <input type="text" id="emailInput" name="email" value="" />
+                    </div>
+                    <div class="input-row">
+                        <label>Password</label>
+                        <input type="password" id="password1Input" name="password1" value="" />
+                    </div>
+                    <div class="input-row">
+                        <label>Password (again)</label>
+                        <input type="password" id="password2Input" name="password2" value="" />
+                    </div>
+                    <div class="action-row">
+                        <input type="submit" value="Submit" id="submitBtn" />
+                    </div>
+                </form>
+            </section>
+            <section id="rightSection">
+                <h2>Data</h2>
+                <pre id="data"></pre>
+            </section>
+        </div>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
