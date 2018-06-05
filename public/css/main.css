@@ -46,3 +46,11 @@ h2 {
 #submitBtn {
   padding: 8px 16px;
 }
+
+.errors-bar {
+  background: #ff2020;
+  border-radius: 5px;
+  color: #fff;
+  margin-bottom: 15px;
+  padding: 5px 0;`
+}
