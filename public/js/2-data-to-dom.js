@@ -2,19 +2,8 @@
   var $ = window.jQuery
 
   // ---------------------------------------------------------------------------
-  // Data
+  // Util
   // ---------------------------------------------------------------------------
-
-  var initialState = {
-    name: '',
-    email: '',
-    password1: '',
-    password2: '',
-    isSubmitting: false,
-    errorsShowing: false,
-    successShowing: false,
-    errors: []
-  }
 
   var entityMap = {
     '&': '&amp;',
@@ -52,6 +41,21 @@
       }
     }
     return str
+  }
+
+  // ---------------------------------------------------------------------------
+  // Data
+  // ---------------------------------------------------------------------------
+
+  var initialState = {
+    name: '',
+    email: '',
+    password1: '',
+    password2: '',
+    isSubmitting: false,
+    errorsShowing: false,
+    successShowing: false,
+    errors: []
   }
 
   // ---------------------------------------------------------------------------
@@ -149,10 +153,6 @@
     return html
   }
 
-  function buildError () {
-    return '<h1 style="background-color: orange">Invalid JSON</h1>'
-  }
-
   // ---------------------------------------------------------------------------
   // Events
   // ---------------------------------------------------------------------------
@@ -167,8 +167,6 @@
 
     if (uiData) {
       $('#leftSection').html(buildUI(uiData))
-    } else {
-      $('#leftSection').html(buildError())
     }
   }
 
