@@ -29,6 +29,12 @@ h2 {
   padding: 20px;
 }
 
+#jsonInput {
+  font-family: monospace;
+  height: 600px;
+  width: 100%;
+}
+
 .input-row {
   margin: 15px 0;
 }
