@@ -43,7 +43,7 @@ h2 {
   padding: 4px;
 }
 
-#submitBtn {
+.big-btn {
   padding: 8px 16px;
 }
 
@@ -53,4 +53,8 @@ h2 {
   color: #fff;
   margin-bottom: 15px;
   padding: 5px 0;`
+}
+
+.errors-bar li {
+  margin: 8px 0;
 }

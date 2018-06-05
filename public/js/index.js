@@ -9,9 +9,21 @@
     return Math.random() * (max - min) + min
   }
 
-  function htmlEscape (s) {
-    // TODO: write me
-    return s
+  var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;',
+    '`': '&#x60;',
+    '=': '&#x3D;'
+  }
+
+  function htmlEscape (aString) {
+    return String(aString).replace(/[&<>"'`=/]/g, function (s) {
+      return entityMap[s]
+    })
   }
 
   // ---------------------------------------------------------------------------
@@ -25,13 +37,19 @@
 
   // returns a data structure (a JS object) of the state of the UI
   function domToData () {
-    return {
+    var formData = {
       name: $('#nameInput').val(),
       email: $('#emailInput').val(),
       password1: $('#password1Input').val(),
       password2: $('#password2Input').val(),
-      isSubmitting: $('#submitBtn').attr('disabled') === 'disabled'
+      isSubmitting: $('#submitBtn').attr('disabled') === 'disabled',
+      errorsShowing: $('#errors').css('display') !== 'none',
+      successShowing: $('#successMessage').css('display') !== 'none'
     }
+
+    formData.errors = formErrors(formData)
+
+    return formData
   }
 
   function showLoadingState () {
@@ -44,9 +62,19 @@
     $('#submitBtn').val('Submit')
   }
 
-  // function resetForm () {
-  //
-  // }
+  function resetForm () {
+    $('#successMessage').hide()
+    $('#theForm').show()
+
+    $('#nameInput').val('')
+    $('#emailInput').val('')
+    $('#password1Input').val('')
+    $('#password2Input').val('')
+
+    clearErrors()
+
+    showStateAsJSON()
+  }
 
   function buildErrorRowHtml (err) {
     return '<li>' + htmlEscape(err) + '</li>'
@@ -67,18 +95,38 @@
   function formErrors (formData) {
     var errors = []
 
-    if (formData.name === '') errors.push('Please enter a username.')
-    if (formData.email === '') errors.push('Please enter an email address.')
-    if (formData.password1 === '') errors.push('Please enter a password.')
-    if (formData.password1 !== formData.password2) errors.push('Passwords do not match.')
+    if (formData.name === '') {
+      errors.push('Please enter a username.')
+    }
+
+    if (formData.email === '') {
+      errors.push('Please enter an email address.')
+    }
+
+    if (formData.email !== '' && formData.email.indexOf('@') === -1) {
+      errors.push('Please enter a valid email address.')
+    }
+
+    if (formData.password1 === '') {
+      errors.push('Please enter a password.')
+    }
+
+    if (formData.password1 !== '' && formData.password1 !== formData.password2) {
+      errors.push('Passwords do not match.')
+    }
 
     return errors
   }
 
+  function showSuccessMessage () {
+    $('#theForm').hide()
+    $('#successMessage').show()
+  }
+
   function formSubmissionFinished () {
     clearLoadingState()
+    showSuccessMessage()
     showStateAsJSON()
-    // showSuccess()
   }
 
   // ---------------------------------------------------------------------------
@@ -97,7 +145,7 @@
     if (errors.length === 0) {
       showLoadingState()
       // simulate an AJAX request
-      window.setTimeout(formSubmissionFinished, randomInt(1000, 2000))
+      window.setTimeout(formSubmissionFinished, randomInt(1500, 2000))
     } else {
       showErrors(errors)
     }
@@ -108,6 +156,7 @@
   function addEvents () {
     $('#theForm').on('submit', submitForm)
     $('#theForm input').on('keyup', showStateAsJSON)
+    $('#okBtn').on('click', resetForm)
   }
 
   // ---------------------------------------------------------------------------
