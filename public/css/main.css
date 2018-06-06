@@ -25,13 +25,16 @@ h2 {
 
 #data {
   background: #eee;
+  font-size: 20px;
   line-height: 1.3em;
   padding: 20px;
 }
 
 #jsonInput {
   font-family: monospace;
+  font-size: 18px;
   height: 600px;
+  line-height: 1.3em;
   width: 100%;
 }
 
