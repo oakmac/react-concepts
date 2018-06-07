@@ -1,7 +1,10 @@
-# React Examples
+# React Concepts
 
-This purpose of this repo is to teach the concepts behind [React.js]
-incrementally using a login form.
+The purpose of this repo is to show how UI and Data can be related. First by
+showing that UI can map to Data, then by showing that Data can map to UI.
+
+The idea is to show this concept using existing tools, then introduce the [React.js]
+library as it has this idea at the core.
 
 [React.js]:https://reactjs.org/
 
@@ -70,6 +73,15 @@ incrementally using a login form.
   * Class-based components are necessary when you need to hook into the lifecycle events
     * If you are building a Class-based component and it is growing in size, consider
       breaking it up into smaller components
+
+## Development Setup
+
+Run a local webserver out of the `/public` folder. For example:
+
+```sh
+cd public
+python -m SimpleHTTPServer
+```
 
 ## License
 
