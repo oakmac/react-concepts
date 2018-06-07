@@ -27,6 +27,39 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Input Validation
+  // ---------------------------------------------------------------------------
+
+  // do some basic form validation
+  // returns an array of the errors (empty array if there are no errors)
+  // NOTE: for a real application you would want to use a library for this
+  function formErrors (formData) {
+    var errors = []
+
+    if (formData.name === '') {
+      errors.push('Please enter a username.')
+    }
+
+    if (formData.email === '') {
+      errors.push('Please enter an email address.')
+    }
+
+    if (formData.email !== '' && formData.email.indexOf('@') === -1) {
+      errors.push('Please enter a valid email address.')
+    }
+
+    if (formData.password1 === '') {
+      errors.push('Please enter a password.')
+    }
+
+    if (formData.password1 !== '' && formData.password1 !== formData.password2) {
+      errors.push('Passwords do not match.')
+    }
+
+    return errors
+  }
+
+  // ---------------------------------------------------------------------------
   // DOM Manipulation
   // ---------------------------------------------------------------------------
 
@@ -35,7 +68,9 @@
     $('#data').html(JSON.stringify(domToData(), null, 2))
   }
 
-  // returns a data structure (a JS object) of the state of the UI
+  // returns a data structure (a JS object) of the current state of the UI
+  // Note that you should be able to call this function at any point in time and
+  // get a data structure that represents the state of the DOM.
   function domToData () {
     var formData = {
       name: $('#nameInput').val(),
@@ -88,34 +123,6 @@
 
   function clearErrors () {
     $('#errors').html('').hide()
-  }
-
-  // do some basic form validation
-  // NOTE: for a real application you would want to use a library for this
-  function formErrors (formData) {
-    var errors = []
-
-    if (formData.name === '') {
-      errors.push('Please enter a username.')
-    }
-
-    if (formData.email === '') {
-      errors.push('Please enter an email address.')
-    }
-
-    if (formData.email !== '' && formData.email.indexOf('@') === -1) {
-      errors.push('Please enter a valid email address.')
-    }
-
-    if (formData.password1 === '') {
-      errors.push('Please enter a password.')
-    }
-
-    if (formData.password1 !== '' && formData.password1 !== formData.password2) {
-      errors.push('Passwords do not match.')
-    }
-
-    return errors
   }
 
   function showSuccessMessage () {
