@@ -22,6 +22,7 @@
     })
   }
 
+  // some simple templating; poor man's mustache.js :)
   function template (str, obj) {
     for (var key in obj) {
       if (!obj.hasOwnProperty(key)) continue
@@ -60,6 +61,8 @@
 
   // ---------------------------------------------------------------------------
   // Build DOM
+  // NOTE: all of the functions in this section are pure functions that return
+  // HTML
   // ---------------------------------------------------------------------------
 
   function buildErrorRowHtml (err) {
